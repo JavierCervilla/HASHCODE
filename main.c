@@ -1,7 +1,9 @@
 #include "include_file.h"
 
-void initialize(file f)
+
+file initialize(void)
 {
+    file f;
     f.books = 0;
     f.libraries = 0;
     f.days = 0;
@@ -13,7 +15,7 @@ void initialize(file f)
     f.info_libraries->score = 0.0;
 }
 
-char *swap(char *s1, char *s2)
+/*char *swap(char *s1, char *s2)
 {
     char *aux = ft_strjoin(s1, s2);
     free(s1);
@@ -21,41 +23,46 @@ char *swap(char *s1, char *s2)
     free(aux);
     return (s1);
 }
-
-void read_library(FILE *fd, library lib)
+*/
+void read_library(FILE *fd, library *l)
 {
-    fscanf(fd, "%d %d %d", &lib.nbooks, &lib.ndays, &lib.books_day);
-    char *aux = strdup("%d ");
-    for (int i = 0; i < lib.nbooks; i++)
-        aux = swap(aux, aux);
-    fscanf(fd, aux, lib.books_types);
+    l = malloc(sizeof(library));
+    fscanf(fd, "%d %d %d\n", &l->nbooks, &l->ndays, &l->books_day);
+    l->books_types = malloc(sizeof(int) * l->nbooks);
+    for (int i = 0; i < l->nbooks; i++)
+        fscanf(fd, "%d", &l->books_types[i]);
+    fscanf(fd, "\n");
 }
 
-void read_file(char *file_name, file f)
+int read_file(char *file_name, file *f)
 {
     FILE *fd;
     if (!(fd = fopen(file_name, "r")))
         return (-1);
     else
     {
-        fscanf(fd, "%d %d %d ", &f.books, &f.libraries, &f.days);
+        fscanf(fd, "%d %d %d", &f->books, &f->libraries, &f->days);
         char *aux = strdup("%d ");
-        for (int i = 0; i < f.books; i++)
-            aux = swap(aux, aux);
-        fscanf(fd, aux, f.indiv_books);
-        // fin de array ??
+        f->indiv_books = malloc(sizeof(int) * f->books);
+        for (int i = 0; i < f->books; i++)
+            fscanf(fd, "%d", &f->indiv_books[i]);
+        fscanf(fd, "\n");
         int i;
-        for (i = 0; i < f.libraries; i++)
-            f.info_libraries[i] = read_library(fd, f.info_libraries);
-        f.info_libraries[i] = NULL;
+        f->info_libraries = malloc(f->libraries * sizeof(library));
+        for (i = 0; i < f->libraries; i++)
+        {   
+           
+            read_library(fd, &f->info_libraries[i]);
+        }
     }
+    return (0);
 }
 
 int main (int argc, char *argv[])
 {
-    file *f;
-    initialize(&f);
+    file f;
 
+    bzero(&f, sizeof(file));
     read_file(argv[1], &f);
 
     return (0);
