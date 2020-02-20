@@ -15,7 +15,7 @@ void initialize(file f)
 
 char *swap(char *s1, char *s2)
 {
-    char *aux = strjoin(s1, s2);
+    char *aux = ft_strjoin(s1, s2);
     free(s1);
     s1 = strdup(aux);
     free(aux);

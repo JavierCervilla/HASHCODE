@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdarg.h>
-
+#include <string.h>
 typedef struct s_library {
 
     int nbooks;         // número libros en una librería
@@ -28,5 +28,8 @@ typedef struct s_file {
     library *info_libraries;    // info de las diferentes librerías
 
 } file;
+
+char	*ft_strjoin(char const *s1, char const *s2);
+char *swap(char *s1, char *s2);
 
 #endif
