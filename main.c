@@ -13,6 +13,7 @@ file initialize(void)
     f.info_libraries->books_day = 0;
     f.info_libraries->books_types = NULL;
     f.info_libraries->score = 0.0;
+    return (f);
 }
 
 /*char *swap(char *s1, char *s2)
@@ -42,7 +43,6 @@ int read_file(char *file_name, file *f)
     else
     {
         fscanf(fd, "%d %d %d", &f->books, &f->libraries, &f->days);
-        char *aux = strdup("%d ");
         f->indiv_books = malloc(sizeof(int) * f->books);
         for (int i = 0; i < f->books; i++)
             fscanf(fd, "%d", &f->indiv_books[i]);
@@ -61,7 +61,7 @@ int read_file(char *file_name, file *f)
 int main (int argc, char *argv[])
 {
     file f;
-
+    argc++;
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
 

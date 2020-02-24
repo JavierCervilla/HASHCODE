@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <stdarg.h>
 #include <string.h>
+#include "libft/libft.h"
 typedef struct s_library {
 
     int nbooks;         // número libros en una librería
