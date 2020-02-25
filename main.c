@@ -33,9 +33,7 @@ int read_file(char *file_name, file *f)
         int i;
         f->info_libraries = ft_calloc(f->libraries , sizeof(library));
         for (i = 0; i < f->libraries; i++)
-        {
             read_library(fd, &f->info_libraries[i], i);
-        }
     }
     return (0);
 }
@@ -52,7 +50,6 @@ void calculate(file *f)
     ft_sort_tab(f);
     while (i < f->libraries)
     {
-        //printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
         while (j < f->info_libraries[i].nbooks)
         {
             printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f->info_libraries[i].books_types[j], f->indiv_books[f->info_libraries[i].books_types[j]]);
@@ -69,11 +66,6 @@ void calculate(file *f)
     }
 }
 
-void scan(file *f, int i)
-{
-
-}
-
 void useless(library *l)
 {
     l->scanned = true;
@@ -88,6 +80,7 @@ int main (int argc, char *argv[])
     int dia = 0;
 
     bzero(&f, sizeof(file));
+    f.output_char = ft_strdup("");
     read_file(argv[1], &f);
     while (dia < f.days)
     {
@@ -99,15 +92,10 @@ int main (int argc, char *argv[])
             if ((f.days - dia) - f.info_libraries[i].days_to_scan < 0)
                 useless(&f.info_libraries[i]);
             else
-            {
-                scan(&f, i);
-            }
+                f.output_char = ft_strjoin(f.output_char, scan(&f, i));
             i++;
         }
-
         dia++;
     }
-
-
     return (0);
 }

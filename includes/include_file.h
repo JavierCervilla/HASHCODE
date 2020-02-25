@@ -23,7 +23,6 @@ typedef struct  s_library {
     float       days_to_scan;       // días totales de escaneo
     float       score;              // ratio de importancia
     bool        scanned;            // utilidad / escaneada.
-
 } library;
 
 typedef struct s_file {
@@ -32,8 +31,8 @@ typedef struct s_file {
     int         libraries;          // número de librerías
     int         days;               // número máx de días para escanear
     int         *indiv_books;       // id de los diferentes libros disponibles
+    char        *output_char;       // string con salida
     library     *info_libraries;    // info de las diferentes librerías
-    int         *scanned_arr;       // libros escaneados
 }               file;
 
 void            calculate_scores(file *f);
