@@ -63,7 +63,8 @@ int main (int argc, char *argv[])
         printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
         while (j < f.info_libraries[i].nbooks)
         {
-            printf("libreria: %d id_libros:%d \n", i, f.info_libraries[i].books_types[j]);
+            printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f.info_libraries[i].books_types[j], f.indiv_books[f.info_libraries[i].books_types[j]]);
+            
             j++;
         }
         j = 0;
@@ -71,6 +72,7 @@ int main (int argc, char *argv[])
         printf("libreria:%d libros/dia: %d\n", i, f.info_libraries[i].books_day);
         printf("libreria:%d score: %f\n", i, f.info_libraries[i].score);
         printf("libreria:%d sum_scores: %d\n", i, f.info_libraries[1].sum_score);
+
         i++;
     }
 
