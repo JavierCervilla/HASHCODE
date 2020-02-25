@@ -47,16 +47,16 @@ int main (int argc, char *argv[])
     ft_sort_tab(&f);
     while (i < f.libraries)
     {
-        printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
+        //printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
         while (j < f.info_libraries[i].nbooks)
         {
-            printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f.info_libraries[i].books_types[j], f.indiv_books[f.info_libraries[i].books_types[j]]);
+        //    printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f.info_libraries[i].books_types[j], f.indiv_books[f.info_libraries[i].books_types[j]]);
 
             j++;
         }
         j = 0;
-        printf("libreria:%d numero de dias: %d\n", i, f.info_libraries[i].ndays);
-        printf("libreria:%d libros/dia: %f\n", i, f.info_libraries[i].books_day);
+       /* printf("libreria:%d numero de dias: %d\n", i, f.info_libraries[i].ndays);
+        printf("libreria:%d libros/dia: %f\n", i, f.info_libraries[i].books_day);*/
         printf("libreria:%d score: %f\n", i, f.info_libraries[i].score);
         printf("libreria:%d sum_scores: %d\n", i, f.info_libraries[i].sum_score);
         printf("libreria:%d days2scan: %f\n", i, f.info_libraries[i].days_to_scan);

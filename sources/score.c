@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   score.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 04:18:53 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/25 04:48:29 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 05:23:27 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,4 @@ void	score_calculation(file *f) // Calculate score
 											f->info_libraries[i].days_to_scan;
 	}
 }
+

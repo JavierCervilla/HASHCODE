@@ -6,7 +6,7 @@
 /*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 05:13:14 by jcervill         ###   ########.fr       */
+/*   Updated: 2020/02/25 05:19:14 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_sort_tab(file *f)
     int j = 1;
     while (j <  f->libraries)
     {
-       if (f->info_libraries[j].score > f->info_libraries[i].score)
+       while (f->info_libraries[j].score > f->info_libraries[i].score)
        {
            swap = f->info_libraries[j];
            f->info_libraries[j] = f->info_libraries[i];
