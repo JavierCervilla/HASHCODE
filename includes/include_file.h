@@ -13,22 +13,23 @@
 
 typedef struct  s_library {
 
-    int         nbooks;         // número libros en una librería
-    int         ndays;          // número de días para registrarse
-    float       books_day;      // número de libros que puedes enviar por día
-    int         *books_types;   // tipos de libros de la librería
-    float       days_to_scan; // días
-    int         sum_score; //puntuacion de libros
-    float       score;        // ratio de importancia
+    int         nbooks;             // número libros en una librería
+    int         nbooks_available;   // número de libros que dan puntuación
+    int         ndays;              // número de días para registrarse
+    int         *books_types;       // tipos de libros de la librería
+    int         sum_score;          // puntuacion de libros
+    float       books_day;          // número de libros que puedes enviar por día
+    float       days_to_scan;       // días
+    float       score;              // ratio de importancia
 
 } library;
 
 typedef struct s_file {
 
-    int         books;          // número de libros máximo
-    int         libraries;      // número de librerías
-    int         days;           // número máx de días para escanear
-    int         *indiv_books;   // id de los diferentes libros disponibles
+    int         books;              // número de libros máximo
+    int         libraries;          // número de librerías
+    int         days;               // número máx de días para escanear
+    int         *indiv_books;       // id de los diferentes libros disponibles
     library     *info_libraries;    // info de las diferentes librerías
 }               file;
 
