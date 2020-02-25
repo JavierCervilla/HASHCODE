@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 09:09:34 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/25 10:43:44 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/26 00:27:42 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ char	*scan(file *f, int i)
 
 	ret = ft_strdup("");
 	k = 0;
-	f->info_libraries[i].days_to_scan = round(f->info_libraries[i].days_to_scan);
+	//f->info_libraries[i].days_to_scan = round(f->info_libraries[i].days_to_scan);
 	f->days_remaining -= f->info_libraries[i].days_to_scan;
-	printf("1-%f\n", f->days_remaining);
+	//printf("1-%f\n", f->days_remaining);
 	books_to_output = f->info_libraries[i].books_day * f->days_remaining;
-	printf("2-%f\n", books_to_output);
+	//printf("2-%f\n", books_to_output);
 	books_to_output = (books_to_output > f->info_libraries[i].nbooks_available
 					? f->info_libraries[i].nbooks_available : books_to_output);
-	printf("3-%f\n", books_to_output);
+	//printf("3-%f\n", books_to_output);
 	books_to_output = round(books_to_output);
-	printf("4-%f\n", books_to_output);
+	//printf("4-%f\n", books_to_output);
 	aux = ft_strjoin(ret, ft_itoa(f->info_libraries[i].lib_id));
 	free(ret);
 	ret = aux;
@@ -43,7 +43,7 @@ char	*scan(file *f, int i)
 	aux = ft_strjoin(ret, "\n");
 	free(ret);
 	ret = aux;
-	for(int l = 0; l <= books_to_output; l++)
+	for(int l = 0; l < books_to_output; l++)
 	{
 		k = 0;
 		for(int j = 0; j <= f->info_libraries[i].nbooks; j++)

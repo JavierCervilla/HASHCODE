@@ -2,7 +2,7 @@
 
 void read_library(FILE *fd, library *l, int i)
 {
-    fscanf(fd, "%d %d %f\n", &l->nbooks, &l->ndays, &l->books_day);
+    fscanf(fd, "%d %d %d\n", &l->nbooks, &l->ndays, &l->books_day);
     l->nbooks_available = l->nbooks;
     l->books_types = malloc(sizeof(int) * l->nbooks);
     for (int i = 0; i < l->nbooks; i++)
@@ -94,7 +94,10 @@ int main (int argc, char *argv[])
                                                 f.info_libraries[i].score <= 0)
                 useless(&f.info_libraries[i]);
             else
+            {
                 f.output_char = ft_strjoin(f.output_char, scan(&f, i));
+                calculate(&f);
+            }
             i++;
         }
         dia++;

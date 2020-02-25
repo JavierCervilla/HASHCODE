@@ -20,7 +20,7 @@ typedef struct  s_library {
     int         ndays;              // número de días para registrarse
     int         *books_types;       // tipos de libros de la librería
     int         sum_score;          // puntuacion de libros
-    float       books_day;          // número de libros que puedes enviar por día
+    int         books_day;          // número de libros que puedes enviar por día
     float       days_to_scan;       // días totales de escaneo
     float       score;              // ratio de importancia
     bool        scanned;            // utilidad / escaneada.
