@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcules.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 05:19:14 by jcervill         ###   ########.fr       */
+/*   Updated: 2020/02/25 05:33:08 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void calculate_scores(file *f)                  // calcula el sumatorio de la pu
 {
     int i = 0;
     int j = 0;
-    
+
     while (i < f->libraries)
     {
         while (j < f->info_libraries[i].nbooks)
@@ -40,18 +40,17 @@ void calculate_day2scan(file *f)            //Calcula los días que le toma esca
 
 void	ft_sort_tab(file *f)
 {
-	library swap;
-	int i = 0;
-    int j = 1;
-    while (j <  f->libraries)
+    library swap;
+	for(int i = 0; i < f->libraries - 1; i++)
     {
-       while (f->info_libraries[j].score > f->info_libraries[i].score)
-       {
-           swap = f->info_libraries[j];
-           f->info_libraries[j] = f->info_libraries[i];
-           f->info_libraries[i] = swap;
-       }
-       i++;
-       j++;
+        for(int j = 0; j < f->libraries - i - 1; j++)
+        {
+            if (f->info_libraries[j].score < f->info_libraries[j + 1].score)
+            {
+                swap = f->info_libraries[j];
+                f->info_libraries[j] = f->info_libraries[j + 1];
+                f->info_libraries[j + 1] = swap;
+            }
+        }
     }
 }
