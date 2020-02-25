@@ -6,7 +6,7 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 04:18:53 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/25 06:02:20 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 07:59:00 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void check_books(file *f)
 			k = j + 1;
 			while (k < f->info_libraries[i].nbooks && f->info_libraries[i].books_types[k] >= 0)
 			{
-				if (f->info_libraries[i].books_types[j] == f->info_libraries[i].books_types[k])
+				if (f->indiv_books[f->info_libraries[i].books_types[k]] == 0 ||
+	f->info_libraries[i].books_types[j] == f->info_libraries[i].books_types[k])
 				{
 					f->info_libraries[i].books_types[k] = -1;
 					f->info_libraries[i].nbooks_available--;

@@ -78,7 +78,7 @@ int main (int argc, char *argv[])
     file f;
     argc++;
     int dia = 0;
-    
+
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
     while (dia < f.days)
@@ -89,6 +89,6 @@ int main (int argc, char *argv[])
         dia++;
     }
 
-    
+
     return (0);
 }
