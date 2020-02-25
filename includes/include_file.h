@@ -33,10 +33,10 @@ typedef struct s_file {
     library     *info_libraries;    // info de las diferentes librerías
 }               file;
 
-char	        *ft_strjoin(char const *s1, char const *s2);
 void            calculate_scores(file *f);
 void            calculate_day2scan(file *f);
 void            score_calculation(file *f);
 void            ft_sort_tab(file *f);
+void            check_books(file *f);
 
 #endif
