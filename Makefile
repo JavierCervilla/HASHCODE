@@ -6,7 +6,7 @@
 #    By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 03:12:16 by mpernia-          #+#    #+#              #
-#    Updated: 2020/02/25 03:40:25 by mpernia-         ###   ########.fr        #
+#    Updated: 2020/02/25 04:01:49 by mpernia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,6 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
-	@echo "Cleaning hashcode."
+	@echo "Cleaning hashcode..."
 
 re: fclean all
