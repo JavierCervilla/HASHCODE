@@ -59,6 +59,7 @@ int main (int argc, char *argv[])
     read_file(argv[1], &f);
     calculate_scores(&f);
     calculate_day2scan(&f);
+    score_calculation(&f);
     while (i < f.libraries)
     {
         printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);

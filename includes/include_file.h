@@ -33,7 +33,7 @@ typedef struct s_file {
 } file;
 
 char	*ft_strjoin(char const *s1, char const *s2);
-char *swap(char *s1, char *s2);
 void calculate_scores(file *f);
 void calculate_day2scan(file *f);
+void score_calculation(file *f);
 #endif
