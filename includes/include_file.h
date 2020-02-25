@@ -31,6 +31,7 @@ typedef struct s_file {
     int         days;               // número máx de días para escanear
     int         *indiv_books;       // id de los diferentes libros disponibles
     library     *info_libraries;    // info de las diferentes librerías
+    int         *scanned;           // libros escaneados
 }               file;
 
 void            calculate_scores(file *f);

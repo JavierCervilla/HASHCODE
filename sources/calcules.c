@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcules.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 06:10:06 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 07:16:58 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void calculate_scores(file *f)      // Sumatoria de la puntuacion de la libreria
 {
     int i = 0;
     int j = 0;
-
+    
     while (i < f->libraries)
     {
+        f->info_libraries[i].sum_score = 0;
         while (j < f->info_libraries[i].nbooks)
         {
             if (f->info_libraries[i].books_types[j] != -1)
