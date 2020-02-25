@@ -1,5 +1,5 @@
 #include "include_file.h"
-
+#include <stdio.h>
 
 file initialize(void)
 {
@@ -27,7 +27,6 @@ file initialize(void)
 */
 void read_library(FILE *fd, library *l)
 {
-    l = malloc(sizeof(library));
     fscanf(fd, "%d %d %d\n", &l->nbooks, &l->ndays, &l->books_day);
     l->books_types = malloc(sizeof(int) * l->nbooks);
     for (int i = 0; i < l->nbooks; i++)
@@ -50,8 +49,8 @@ int read_file(char *file_name, file *f)
         int i;
         f->info_libraries = malloc(f->libraries * sizeof(library));
         for (i = 0; i < f->libraries; i++)
-        {   
-           
+        {
+
             read_library(fd, &f->info_libraries[i]);
         }
     }
@@ -64,6 +63,12 @@ int main (int argc, char *argv[])
     argc++;
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
+    printf("%d\n", f.info_libraries[0].nbooks);
+    printf("%d\n", f.info_libraries[999].books_types[793]);
+    printf("%d\n", f.info_libraries[999].ndays);
+    printf("%d\n", f.info_libraries[999].books_day);
+    printf("%f", f.info_libraries[0].score);
+
 
     return (0);
 }
