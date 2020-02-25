@@ -1,6 +1,6 @@
 #include "includes/include_file.h"
 
-void read_library(FILE *fd, library *l)
+void read_library(FILE *fd, library *l, int i)
 {
     fscanf(fd, "%d %d %f\n", &l->nbooks, &l->ndays, &l->books_day);
     l->nbooks_available = l->nbooks;
@@ -8,6 +8,8 @@ void read_library(FILE *fd, library *l)
     for (int i = 0; i < l->nbooks; i++)
         fscanf(fd, "%d", &l->books_types[i]);
     fscanf(fd, "\n");
+    l->scanned = false;
+    l->lib_id = i;
 }
 
 int read_file(char *file_name, file *f)
@@ -32,8 +34,7 @@ int read_file(char *file_name, file *f)
         f->info_libraries = ft_calloc(f->libraries , sizeof(library));
         for (i = 0; i < f->libraries; i++)
         {
-
-            read_library(fd, &f->info_libraries[i]);
+            read_library(fd, &f->info_libraries[i], i);
         }
     }
     return (0);
@@ -68,15 +69,22 @@ void calculate(file *f)
     }
 }
 
-void scan(file *f)
+void scan(file *f, int i)
 {
 
 }
 
+void useless(library *l)
+{
+    l->scanned = true;
+    l->score = 0;
+    l->sum_score = 0;
+}
 int main (int argc, char *argv[])
 {
     file f;
     argc++;
+    int i = 0;
     int dia = 0;
 
     bzero(&f, sizeof(file));
@@ -85,7 +93,18 @@ int main (int argc, char *argv[])
     {
         printf("|-----------------------------|\n   DIA: %d\n|-----------------------------|\n", dia);
         calculate(&f);
-        scan(&f);
+
+        while (i < f.libraries)
+        {
+            if ((f.days - dia) - f.info_libraries[i].days_to_scan < 0)
+                useless(&f.info_libraries[i]);
+            else
+            {
+                scan(&f, i);
+            }
+            i++;
+        }
+
         dia++;
     }
 

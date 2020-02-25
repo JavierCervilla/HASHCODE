@@ -6,7 +6,7 @@
 /*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 07:16:58 by jcervill         ###   ########.fr       */
+/*   Updated: 2020/02/25 08:34:54 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,28 @@ void	ft_sort_tab(file *f)        // Ordena librerias por score
     }
 }
 
+void	ft_sort_int_tab(int *tab, int size)
+{
+	int swap;
+	int csw;
+	int counter;
+
+	size--;
+	csw = 1;
+	while (csw != 0)
+	{
+		counter = 0;
+		csw = 0;
+		while (size > counter)
+		{
+			if (tab[counter] > tab[counter + 1])
+			{
+				swap = tab[counter];
+				tab[counter] = tab[counter + 1];
+				tab[counter + 1] = swap;
+				csw++;
+			}
+			counter++;
+		}
+	}
+}
