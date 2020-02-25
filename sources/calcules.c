@@ -6,11 +6,11 @@
 /*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 03:02:05 by jcervill         ###   ########.fr       */
+/*   Updated: 2020/02/25 03:28:29 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include_file.h"
+#include "../includes/include_file.h"
 
 void calculate_scores(file *f)
 {
