@@ -34,5 +34,5 @@ typedef struct s_file {
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char *swap(char *s1, char *s2);
-
+void calculate_scores(file *f);
 #endif

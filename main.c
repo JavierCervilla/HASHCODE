@@ -1,5 +1,4 @@
-#include "include_file.h"
-#include <stdio.h>
+#include "includes/include_file.h"
 
 file initialize(void)
 {
@@ -50,35 +49,30 @@ int read_file(char *file_name, file *f)
     return (0);
 }
 
-void calculate_scores(file *f)
-{
-    int i = 0;
-    int j = 0;
-    while (i < f->libraries)
-    {
-        f->info_libraries[i].days_to_scan = ((f->info_libraries[i].nbooks / f->info_libraries[i].books_day) + f->info_libraries[i].ndays);
-        while (j < f->info_libraries[i].nbooks)
-        {
-            f->info_libraries[i].sum_score = f->info_libraries[i].sum_score + (f->indiv_books[f->info_libraries[i].books_types[j]]);
-            j++;
-        }
-        i++;
-    }
-}
-
 int main (int argc, char *argv[])
 {
     file f;
     argc++;
+    int i = 0;
+    int j = 0;
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
-    /*printf("%d\n", f.info_libraries[0].nbooks);
-    printf("%d\n", f.info_libraries[999].books_types[793]);
-    printf("%d\n", f.info_libraries[999].ndays);
-    printf("%d\n", f.info_libraries[999].books_day);
-    printf("%f", f.info_libraries[0].score);*/
     calculate_scores(&f);
-    printf("%d", f.info_libraries[1].sum_score);
+    while (i < f.libraries)
+    {
+        printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
+        while (j < f.info_libraries[i].nbooks)
+        {
+            printf("libreria: %d id_libros:%d \n", i, f.info_libraries[i].books_types[j]);
+            j++;
+        }
+        j = 0;
+        printf("libreria:%d numero de dias: %d\n", i, f.info_libraries[i].ndays);
+        printf("libreria:%d libros/dia: %d\n", i, f.info_libraries[i].books_day);
+        printf("libreria:%d score: %f\n", i, f.info_libraries[i].score);
+        printf("libreria:%d sum_scores: %d\n", i, f.info_libraries[1].sum_score);
+        i++;
+    }
 
 
 
