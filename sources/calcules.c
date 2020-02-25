@@ -6,13 +6,13 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 05:33:08 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 06:10:06 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/include_file.h"
 
-void calculate_scores(file *f)                  // calcula el sumatorio de la puntuacion de la libreria
+void calculate_scores(file *f)      // Sumatoria de la puntuacion de la libreria
 {
     int i = 0;
     int j = 0;
@@ -20,13 +20,18 @@ void calculate_scores(file *f)                  // calcula el sumatorio de la pu
     while (i < f->libraries)
     {
         while (j < f->info_libraries[i].nbooks)
-            f->info_libraries[i].sum_score = f->info_libraries[i].sum_score + (f->indiv_books[f->info_libraries[i].books_types[j++]]);
+        {
+            if (f->info_libraries[i].books_types[j] != -1)
+                f->info_libraries[i].sum_score = f->info_libraries[i].sum_score
+                    + (f->indiv_books[f->info_libraries[i].books_types[j]]);
+            j++;
+        }
         j = 0;
         i++;
     }
 }
 
-void calculate_day2scan(file *f)            //Calcula los días que le toma escanera sus libros
+void calculate_day2scan(file *f)    // Días que toma escanear sus libros
 {
     int i = 0;
     float ratio = 0.0;
@@ -38,7 +43,7 @@ void calculate_day2scan(file *f)            //Calcula los días que le toma esca
     }
 }
 
-void	ft_sort_tab(file *f)
+void	ft_sort_tab(file *f)        // Ordena librerias por score
 {
     library swap;
 	for(int i = 0; i < f->libraries - 1; i++)
@@ -54,3 +59,4 @@ void	ft_sort_tab(file *f)
         }
     }
 }
+

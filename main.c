@@ -41,11 +41,12 @@ int main (int argc, char *argv[])
     int j = 0;
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
+    check_books(&f);
     calculate_day2scan(&f);
     calculate_scores(&f);
     score_calculation(&f);
     ft_sort_tab(&f);
-    check_books(&f);
+
     while (i < f.libraries)
     {
         //printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
