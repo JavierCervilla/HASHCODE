@@ -9,7 +9,7 @@ file initialize(void)
     f.indiv_books = NULL;
     f.info_libraries->nbooks = 0;
     f.info_libraries->ndays = 0;
-    f.info_libraries->books_day = 0;
+    f.info_libraries->books_day = 0.0;
     f.info_libraries->books_types = NULL;
     f.info_libraries->score = 0.0;
     f.info_libraries->sum_score = 0;
@@ -19,7 +19,7 @@ file initialize(void)
 
 void read_library(FILE *fd, library *l)
 {
-    fscanf(fd, "%d %d %d\n", &l->nbooks, &l->ndays, &l->books_day);
+    fscanf(fd, "%d %d %f\n", &l->nbooks, &l->ndays, &l->books_day);
     l->books_types = malloc(sizeof(int) * l->nbooks);
     for (int i = 0; i < l->nbooks; i++)
         fscanf(fd, "%d", &l->books_types[i]);
@@ -58,6 +58,7 @@ int main (int argc, char *argv[])
     bzero(&f, sizeof(file));
     read_file(argv[1], &f);
     calculate_scores(&f);
+    calculate_day2scan(&f);
     while (i < f.libraries)
     {
         printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
@@ -69,14 +70,11 @@ int main (int argc, char *argv[])
         }
         j = 0;
         printf("libreria:%d numero de dias: %d\n", i, f.info_libraries[i].ndays);
-        printf("libreria:%d libros/dia: %d\n", i, f.info_libraries[i].books_day);
+        printf("libreria:%d libros/dia: %f\n", i, f.info_libraries[i].books_day);
         printf("libreria:%d score: %f\n", i, f.info_libraries[i].score);
-        printf("libreria:%d sum_scores: %d\n", i, f.info_libraries[1].sum_score);
-
+        printf("libreria:%d sum_scores: %d\n", i, f.info_libraries[i].sum_score);
+        printf("libreria:%d days2scan: %f\n", i, f.info_libraries[i].days_to_scan);
         i++;
     }
-
-
-
     return (0);
 }

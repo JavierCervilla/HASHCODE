@@ -14,7 +14,7 @@ typedef struct s_library {
 
     int nbooks;         // número libros en una librería
     int ndays;          // número de días para registrarse
-    int books_day;      // número de libros que puedes enviar por día
+    float books_day;      // número de libros que puedes enviar por día
     int *books_types;   // tipos de libros de la librería
     float days_to_scan; // días
     int     sum_score; //puntuacion de libros
@@ -35,4 +35,5 @@ typedef struct s_file {
 char	*ft_strjoin(char const *s1, char const *s2);
 char *swap(char *s1, char *s2);
 void calculate_scores(file *f);
+void calculate_day2scan(file *f);
 #endif
