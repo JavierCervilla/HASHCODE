@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcules.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/25 04:55:32 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 05:03:24 by jcervill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,23 @@ void calculate_day2scan(file *f)            //Calcula los días que le toma esca
         ratio = (f->info_libraries[i].nbooks_available / f->info_libraries[i].books_day);
         f->info_libraries[i].days_to_scan = f->info_libraries[i].ndays + ratio;
         i++;
+    }
+}
+
+void	ft_sort_tab(file *f)
+{
+	library swap;
+	int i = 0;
+    int j = 1;
+    while (j <  f->libraries)
+    {
+       while (f->info_libraries[j].score > f->info_libraries[i].score)
+       {
+           swap = f->info_libraries[j];
+           f->info_libraries[j] = f->info_libraries[i];
+           f->info_libraries[i] = swap;
+       }
+       i++;
+       j++;
     }
 }
