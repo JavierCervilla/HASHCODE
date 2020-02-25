@@ -21,6 +21,7 @@ int read_file(char *file_name, file *f)
     else
     {
         fscanf(fd, "%d %d %d", &f->books, &f->libraries, &f->days);
+        f->days_remaining = f->days;
         f->indiv_books = malloc(sizeof(int) * f->books);
         while (f->indiv_books[i])
         {
@@ -52,16 +53,16 @@ void calculate(file *f)
     {
         while (j < f->info_libraries[i].nbooks)
         {
-            printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f->info_libraries[i].books_types[j], f->indiv_books[f->info_libraries[i].books_types[j]]);
+         //   printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f->info_libraries[i].books_types[j], f->indiv_books[f->info_libraries[i].books_types[j]]);
             j++;
         }
         j = 0;
-        printf("libreria:%d numero de dias: %d\n", i, f->info_libraries[i].ndays);
+    /*    printf("libreria:%d numero de dias: %d\n", i, f->info_libraries[i].ndays);
         printf("libreria:%d libros/dia: %f\n", i, f->info_libraries[i].books_day);
         printf("libreria:%d score: %f\n", i, f->info_libraries[i].score);
         printf("libreria:%d sum_scores: %d\n", i, f->info_libraries[i].sum_score);
         printf("libreria:%d days2scan: %f\n", i, f->info_libraries[i].days_to_scan);
-        printf("-----------------------------\n");
+        printf("-----------------------------\n");*/
         i++;
     }
 }
@@ -84,18 +85,20 @@ int main (int argc, char *argv[])
     read_file(argv[1], &f);
     while (dia < f.days)
     {
-        printf("|-----------------------------|\n   DIA: %d\n|-----------------------------|\n", dia);
+      //  printf("|-----------------------------|\n   DIA: %d\n|-----------------------------|\n", dia);
         calculate(&f);
 
         while (i < f.libraries)
         {
-            if ((f.days - dia) - f.info_libraries[i].days_to_scan < 0)
+            if ((f.days - dia) - f.info_libraries[i].days_to_scan < 0 &&
+                                                f.info_libraries[i].score <= 0)
                 useless(&f.info_libraries[i]);
             else
                 f.output_char = ft_strjoin(f.output_char, scan(&f, i));
             i++;
         }
         dia++;
+        f.days_remaining--;
     }
     return (0);
 }

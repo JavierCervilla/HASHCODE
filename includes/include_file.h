@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include "libft/libft.h"
+#include <math.h>
 #include <stdbool.h>
 
 typedef struct  s_library {
@@ -31,6 +32,7 @@ typedef struct s_file {
     int         libraries;          // número de librerías
     int         days;               // número máx de días para escanear
     int         *indiv_books;       // id de los diferentes libros disponibles
+    float       days_remaining;     // días que quedan
     char        *output_char;       // string con salida
     library     *info_libraries;    // info de las diferentes librerías
 }               file;
