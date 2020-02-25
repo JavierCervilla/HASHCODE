@@ -23,7 +23,7 @@ int read_file(char *file_name, file *f)
             fscanf(fd, "%d", &f->indiv_books[i]);
         fscanf(fd, "\n");
         int i;
-        f->info_libraries = malloc(f->libraries * sizeof(library));
+        f->info_libraries = ft_calloc(f->libraries , sizeof(library));
         for (i = 0; i < f->libraries; i++)
         {
 
@@ -44,6 +44,7 @@ int main (int argc, char *argv[])
     calculate_day2scan(&f);
     calculate_scores(&f);
     score_calculation(&f);
+    ft_sort_tab(&f);
     while (i < f.libraries)
     {
         printf("libreria: %d numero de libros: %d\n", i, f.info_libraries[i].nbooks);
