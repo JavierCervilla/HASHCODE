@@ -41,5 +41,6 @@ void            score_calculation(file *f);
 void            ft_sort_tab(file *f);
 void            check_books(file *f);
 void            ft_sort_int_tab(int *tab, int size);
+char	        *scan(file *f, int i);
 
 #endif

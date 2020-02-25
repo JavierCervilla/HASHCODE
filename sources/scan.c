@@ -6,10 +6,14 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 09:09:34 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/25 09:15:14 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/25 09:22:44 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/include_file.h"
 
-char
+char	*scan(file *f, int i)
+{
+
+	return(0);
+}
