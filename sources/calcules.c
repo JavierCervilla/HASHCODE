@@ -6,13 +6,13 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/27 04:48:35 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/27 05:10:30 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/include_file.h"
 
-static void check_books(file *f)
+static void check_books(file *f) // Pasa por librerias anulando libros usados
 {
 	int i = 0;
 	int j;

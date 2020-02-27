@@ -1,12 +1,5 @@
 #include "includes/include_file.h"
 
-void useless(library *l) // Anula librerias por falta de días
-{
-    l->scanned = true;
-    l->score = 0;
-    l->sum_score = 0;
-}
-
 int main (int argc, char *argv[])
 {
     file f;
@@ -29,7 +22,8 @@ int main (int argc, char *argv[])
             if (f.days_remaining < f.info_libraries[i].ndays ||
                                                 f.info_libraries[i].score <= 0)
                 useless(&f.info_libraries[i]);
-            else if (f.info_libraries[i].scanned == false && f.info_libraries[i].score > 0)
+            else if (f.info_libraries[i].scanned == false &&
+                                                f.info_libraries[i].score > 0)
             {
                 f.output_char = ft_strjoin(f.output_char, scan(&f, i));
                 useless(&f.info_libraries[i]);

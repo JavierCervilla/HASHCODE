@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan.c                                             :+:      :+:    :+:   */
+/*   scan_and_trash.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 09:09:34 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/27 04:49:00 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/27 05:09:08 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/include_file.h"
 
-char	*scan(file *f, int i)
+void useless(library *l) // Anula librerias por falta de días
+{
+    l->scanned = true;
+    l->score = 0;
+    l->sum_score = 0;
+}
+
+char	*scan(file *f, int i) // Archivo que crea los datos de cada libreria
 {
 	char *ret;
 	char *aux;
@@ -43,7 +50,8 @@ char	*scan(file *f, int i)
 		for(int j = 0; j < f->info_libraries[i].nbooks; j++)
 		{
 			if (f->info_libraries[i].books_types[j] != -1 &&
-f->indiv_books[f->info_libraries[i].books_types[j]] > f->indiv_books[f->info_libraries[i].books_types[k]])
+						f->indiv_books[f->info_libraries[i].books_types[j]] >
+							f->indiv_books[f->info_libraries[i].books_types[k]])
 				k = j;
 		}
 		aux = ft_strjoin(ret, ft_itoa(f->info_libraries[i].books_types[k]));
@@ -57,6 +65,5 @@ f->indiv_books[f->info_libraries[i].books_types[j]] > f->indiv_books[f->info_lib
 	aux = ft_strjoin(ret, "\n");
 	free(ret);
 	ret = aux;
-//	ft_printf("RETURN de %d: \n%s\n", f->info_libraries[i].lib_id, ret);
 	return (ret);
 }

@@ -40,6 +40,7 @@ typedef struct s_file {
 int             read_file(char *file_name, file *f);
 
 void            calculate(file *f);
+void            useless(library *l);
 
 char	        *scan(file *f, int i);
 
