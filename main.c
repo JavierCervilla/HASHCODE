@@ -19,7 +19,6 @@ int main (int argc, char *argv[])
     calculate(&f);
     while (f.days_remaining > 0)
     {
-      //  printf("|-----------------------------|\n   DIA: %d\n|-----------------------------|\n", dia);
         i = 0;
         printf("dr: %d\n", f.days_remaining);
         while (i < f.libraries)
@@ -35,7 +34,8 @@ int main (int argc, char *argv[])
             }
             i++;
         }
-        f.days_remaining--;
+        calculate(&f);
+       f.days_remaining--;
     }
     //printf("%s", f.output_char);
     return (0);

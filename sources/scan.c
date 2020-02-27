@@ -6,7 +6,7 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 09:09:34 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/27 02:40:46 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/27 04:04:46 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ char	*scan(file *f, int i)
 	books_to_output = f->info_libraries[i].books_day * f->days_remaining;
 	books_to_output = (books_to_output > f->info_libraries[i].nbooks_available
 					? f->info_libraries[i].nbooks_available : books_to_output);
-	/*printf("output %f, books_day %d, days_r %f, books_a %d\n",
-	books_to_output, f->info_libraries[i].books_day,
-	f->days_remaining, f->info_libraries[i].nbooks_available );*/
 	aux = ft_strjoin(ret, ft_itoa(f->info_libraries[i].lib_id));
 	free(ret);
 	ret = aux;
@@ -43,19 +40,19 @@ char	*scan(file *f, int i)
 	for(int l = 0; l < books_to_output; l++)
 	{
 		k = 0;
-		for(int j = 0; j <= f->info_libraries[i].nbooks; j++)
+		for(int j = 0; j < f->info_libraries[i].nbooks; j++)
 		{
-			if (f->indiv_books[f->info_libraries->books_types[j]] >
-								f->indiv_books[f->info_libraries->books_types[k]])
+			if (f->indiv_books[f->info_libraries[i].books_types[j]] != -1 &&
+					f->indiv_books[f->info_libraries[i].books_types[j]] > f->indiv_books[f->info_libraries[i].books_types[k]])
 				k = j;
 		}
-		aux = ft_strjoin(ret, ft_itoa(f->info_libraries->books_types[k]));
+		aux = ft_strjoin(ret, ft_itoa(f->info_libraries[i].books_types[k]));
 		free(ret);
 		ret = aux;
 		aux = ft_strjoin(ret, " ");
 		free(ret);
 		ret = aux;
-		f->indiv_books[f->info_libraries->books_types[k]] = 0;
+		f->indiv_books[f->info_libraries[i].books_types[k]] = 0;
 	}
 	aux = ft_strjoin(ret, "\n");
 	free(ret);
