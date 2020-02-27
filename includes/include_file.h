@@ -32,17 +32,15 @@ typedef struct s_file {
     int         libraries;          // número de librerías
     int         days;               // número máx de días para escanear
     int         *indiv_books;       // id de los diferentes libros disponibles
-    float       days_remaining;     // días que quedan
+    int           days_remaining;     // días que quedan
     char        *output_char;       // string con salida
     library     *info_libraries;    // info de las diferentes librerías
 }               file;
 
-void            calculate_scores(file *f);
-void            calculate_day2scan(file *f);
-void            score_calculation(file *f);
-void            ft_sort_tab(file *f);
-void            check_books(file *f);
-void            ft_sort_int_tab(int *tab, int size);
+int             read_file(char *file_name, file *f);
+
+void            calculate(file *f);
+
 char	        *scan(file *f, int i);
 
 #endif

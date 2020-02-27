@@ -6,7 +6,7 @@
 #    By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 03:12:16 by mpernia-          #+#    #+#              #
-#    Updated: 2020/02/25 04:01:49 by mpernia-         ###   ########.fr        #
+#    Updated: 2020/02/27 01:39:50 by mpernia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ $(NAME): $(OBJECTS)
 	@make -C $(LIBFT_DIR)
 	@echo "Compiling objects..."
 	$(CC) $(INC) main.c $(OBJS) -l ft -L $(LIBFT_DIR) -o $(NAME)
+	./hashcode ./files/a_example.txt
 	@echo "Done."
 
 .PHONY: all clean fclean

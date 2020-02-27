@@ -3,16 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   calcules.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcervill <jcervill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/26 00:23:58 by jcervill         ###   ########.fr       */
+/*   Updated: 2020/02/27 02:31:31 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/include_file.h"
 
-void calculate_scores(file *f)      // Sumatoria de la puntuacion de la libreria
+static void check_books(file *f)
+{
+	int i = 0;
+	int j;
+	int k;
+
+	while (i < f->libraries)
+	{
+		j = 0;
+		while (j < f->info_libraries[i].nbooks &&
+									f->info_libraries[i].books_types[j] >= 0)
+		{
+			k = j + 1;
+			while (k < f->info_libraries[i].nbooks &&
+									f->info_libraries[i].books_types[k] >= 0)
+			{
+				if (f->indiv_books[f->info_libraries[i].books_types[k]] == 0 ||
+	f->info_libraries[i].books_types[j] == f->info_libraries[i].books_types[k])
+				{
+					f->info_libraries[i].books_types[k] = -1;
+					if (f->info_libraries[i].nbooks_available > 0)
+                        f->info_libraries[i].nbooks_available--;
+				}
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static void calculate_day2scan(file *f)    // Días que toma escanear sus libros
+{
+    int i = 0;
+    float ratio = 0;
+
+    while (i < f->libraries)
+    {
+        ratio = (f->info_libraries[i].nbooks_available / f->info_libraries[i].books_day);
+        f->info_libraries[i].days_to_scan = f->info_libraries[i].ndays + ratio;
+       // printf("%f", f->info_libraries[i].days_to_scan);
+        if (f->info_libraries[i].nbooks_available % f->info_libraries[i].books_day > 1)
+            f->info_libraries[i].days_to_scan++;
+        i++;
+    }
+}
+
+static void calculate_sum(file *f)      // Sumatoria de la puntuacion de la libreria
 {
     int i = 0;
     int j = 0;
@@ -22,7 +69,7 @@ void calculate_scores(file *f)      // Sumatoria de la puntuacion de la libreria
         f->info_libraries[i].sum_score = 0;
         while (j < f->info_libraries[i].nbooks)
         {
-            if (f->info_libraries[i].books_types[j] != -1)
+            if (f->info_libraries[i].books_types[j] > -1)
                 f->info_libraries[i].sum_score = f->info_libraries[i].sum_score
                     + (f->indiv_books[f->info_libraries[i].books_types[j]]);
             j++;
@@ -32,21 +79,16 @@ void calculate_scores(file *f)      // Sumatoria de la puntuacion de la libreria
     }
 }
 
-void calculate_day2scan(file *f)    // Días que toma escanear sus libros
+static void score_calculation(file *f) // Calculate score
 {
-    int i = 0;
-    int ratio = 0;
-    while (i < f->libraries)
-    {
-        ratio = (f->info_libraries[i].nbooks_available / f->info_libraries[i].books_day);
-        f->info_libraries[i].days_to_scan = f->info_libraries[i].ndays + ratio;
-        if (f->info_libraries[i].nbooks_available % f->info_libraries[i].books_day >= 5)
-            f->info_libraries[i].days_to_scan++;
-        i++;
-    }
+	for (int i = 0; i < f->libraries; i++)
+	{
+		f->info_libraries[i].score = f->info_libraries[i].sum_score /
+											 f->info_libraries[i].days_to_scan;
+	}
 }
 
-void	ft_sort_tab(file *f)        // Ordena librerias por score
+static void	ft_sort_tab(file *f)        // Ordena librerias por score
 {
     library swap;
 	for(int i = 0; i < f->libraries - 1; i++)
@@ -63,28 +105,30 @@ void	ft_sort_tab(file *f)        // Ordena librerias por score
     }
 }
 
-void	ft_sort_int_tab(int *tab, int size)
+void calculate(file *f)
 {
-	int swap;
-	int csw;
-	int counter;
+  /*  int i = 0;
+    int j = 0;*/
 
-	size--;
-	csw = 1;
-	while (csw != 0)
-	{
-		counter = 0;
-		csw = 0;
-		while (size > counter)
-		{
-			if (tab[counter] > tab[counter + 1])
-			{
-				swap = tab[counter];
-				tab[counter] = tab[counter + 1];
-				tab[counter + 1] = swap;
-				csw++;
-			}
-			counter++;
-		}
-	}
+    check_books(f);
+    calculate_day2scan(f);
+    calculate_sum(f);
+    score_calculation(f);
+    ft_sort_tab(f);
+   /* while (i < f->libraries)
+    {
+        while (j < f->info_libraries[i].nbooks)
+        {
+            printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f->info_libraries[i].books_types[j], f->indiv_books[f->info_libraries[i].books_types[j]]);
+            j++;
+        }
+        j = 0;
+        printf("libreria:%d numero de dias: %d\n", i, f->info_libraries[i].ndays);
+        printf("libreria:%d libros/dia: %f\n", i, f->info_libraries[i].books_day);
+        printf("libreria:%d score: %f\n", i, f->info_libraries[i].score);
+        printf("libreria:%d sum_scores: %d\n", i, f->info_libraries[i].sum_score);
+        printf("libreria:%d days2scan: %f\n", i, f->info_libraries[i].days_to_scan);
+        printf("-----------------------------\n");
+        i++;
+    }*/
 }
