@@ -6,7 +6,7 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 09:09:34 by mpernia-          #+#    #+#             */
-/*   Updated: 2020/02/27 04:04:46 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/27 04:49:00 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ char	*scan(file *f, int i)
 		k = 0;
 		for(int j = 0; j < f->info_libraries[i].nbooks; j++)
 		{
-			if (f->indiv_books[f->info_libraries[i].books_types[j]] != -1 &&
-					f->indiv_books[f->info_libraries[i].books_types[j]] > f->indiv_books[f->info_libraries[i].books_types[k]])
+			if (f->info_libraries[i].books_types[j] != -1 &&
+f->indiv_books[f->info_libraries[i].books_types[j]] > f->indiv_books[f->info_libraries[i].books_types[k]])
 				k = j;
 		}
 		aux = ft_strjoin(ret, ft_itoa(f->info_libraries[i].books_types[k]));
@@ -57,6 +57,6 @@ char	*scan(file *f, int i)
 	aux = ft_strjoin(ret, "\n");
 	free(ret);
 	ret = aux;
-	ft_printf("RETURN de %d: \n%s\n", f->info_libraries[i].lib_id, ret);
+//	ft_printf("RETURN de %d: \n%s\n", f->info_libraries[i].lib_id, ret);
 	return (ret);
 }

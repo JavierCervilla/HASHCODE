@@ -6,7 +6,7 @@
 /*   By: mpernia- <mpernia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 03:01:49 by jcervill          #+#    #+#             */
-/*   Updated: 2020/02/27 02:31:31 by mpernia-         ###   ########.fr       */
+/*   Updated: 2020/02/27 04:48:35 by mpernia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void calculate_day2scan(file *f)    // Días que toma escanear sus libros
     {
         ratio = (f->info_libraries[i].nbooks_available / f->info_libraries[i].books_day);
         f->info_libraries[i].days_to_scan = f->info_libraries[i].ndays + ratio;
-       // printf("%f", f->info_libraries[i].days_to_scan);
         if (f->info_libraries[i].nbooks_available % f->info_libraries[i].books_day > 1)
             f->info_libraries[i].days_to_scan++;
         i++;
@@ -107,28 +106,9 @@ static void	ft_sort_tab(file *f)        // Ordena librerias por score
 
 void calculate(file *f)
 {
-  /*  int i = 0;
-    int j = 0;*/
-
     check_books(f);
     calculate_day2scan(f);
     calculate_sum(f);
     score_calculation(f);
     ft_sort_tab(f);
-   /* while (i < f->libraries)
-    {
-        while (j < f->info_libraries[i].nbooks)
-        {
-            printf("libreria: %d id_libros:%d puntuacion del libro: %d\n", i, f->info_libraries[i].books_types[j], f->indiv_books[f->info_libraries[i].books_types[j]]);
-            j++;
-        }
-        j = 0;
-        printf("libreria:%d numero de dias: %d\n", i, f->info_libraries[i].ndays);
-        printf("libreria:%d libros/dia: %f\n", i, f->info_libraries[i].books_day);
-        printf("libreria:%d score: %f\n", i, f->info_libraries[i].score);
-        printf("libreria:%d sum_scores: %d\n", i, f->info_libraries[i].sum_score);
-        printf("libreria:%d days2scan: %f\n", i, f->info_libraries[i].days_to_scan);
-        printf("-----------------------------\n");
-        i++;
-    }*/
 }
